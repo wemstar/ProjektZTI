@@ -49,7 +49,7 @@ public class AuthenticationFilter extends GenericFilterBean {
         Optional<String> token = Optional.fromNullable(httpRequest.getHeader("X-Auth-Token"));
 
         String resourcePath = new UrlPathHelper().getPathWithinApplication(httpRequest);
-
+        logger.debug("AuthenticationFilter is passing request down the filter chain");
         try {
             if (postToAuthenticate(httpRequest, resourcePath)) {
                 logger.debug("Trying to authenticate user {} by X-Auth-Username method", username);

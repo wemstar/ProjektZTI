@@ -14,11 +14,11 @@ import org.springframework.security.core.AuthenticationException;
 public class DomainUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
     private TokenService tokenService;
-    private ExternalServiceAuthenticator externalServiceAuthenticator;
 
-    public DomainUsernamePasswordAuthenticationProvider(TokenService tokenService, ExternalServiceAuthenticator externalServiceAuthenticator) {
+
+    public DomainUsernamePasswordAuthenticationProvider(TokenService tokenService) {
         this.tokenService = tokenService;
-        this.externalServiceAuthenticator = externalServiceAuthenticator;
+
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DomainUsernamePasswordAuthenticationProvider implements Authenticat
             throw new BadCredentialsException("Invalid Domain User Credentials");
         }
 
-        AuthenticationWithToken resultOfAuthentication = externalServiceAuthenticator.authenticate(username.get(), password.get());
+        AuthenticationWithToken resultOfAuthentication = new AuthenticationWithToken("user","user");//externalServiceAuthenticator.authenticate(username.get(), password.get());
         String newToken = tokenService.generateNewToken();
         resultOfAuthentication.setToken(newToken);
         tokenService.store(newToken, resultOfAuthentication);

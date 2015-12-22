@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(path = "/product")
-@PreAuthorize("hasAuthority('ROLE_DOMAIN_USER')")
+//@PreAuthorize("hasAuthority('ROLE_DOMAIN_USER')")
 public class ProductController {
 
     @Autowired

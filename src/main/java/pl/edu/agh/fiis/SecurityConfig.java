@@ -25,8 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${backend.admin.role}")
-    private String backendAdminRole;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -35,7 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().
                 authorizeRequests().
-                //antMatchers(actuatorEndpoints()).hasRole(backendAdminRole).
                 anyRequest().authenticated().
                 and().
                 anonymous().disable().
@@ -45,16 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.addFilterBefore(new ManagementEndpointAuthenticationFilter(authenticationManager()), BasicAuthenticationFilter.class);
     }
 
-    /*private String[] actuatorEndpoints() {
-        return new String[]{ApiController.AUTOCONFIG_ENDPOINT, ApiController.BEANS_ENDPOINT, ApiController.CONFIGPROPS_ENDPOINT,
-                ApiController.ENV_ENDPOINT, ApiController.MAPPINGS_ENDPOINT,
-                ApiController.METRICS_ENDPOINT, ApiController.SHUTDOWN_ENDPOINT};
-    }*/
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(domainUsernamePasswordAuthenticationProvider()).
-                //authenticationProvider(backendAdminUsernamePasswordAuthenticationProvider()).
                 authenticationProvider(tokenAuthenticationProvider());
     }
 
@@ -64,13 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public ExternalServiceAuthenticator someExternalServiceAuthenticator() {
-        return new SomeExternalServiceAuthenticator();
-    }
-
-    @Bean
     public AuthenticationProvider domainUsernamePasswordAuthenticationProvider() {
-        return new DomainUsernamePasswordAuthenticationProvider(tokenService(), someExternalServiceAuthenticator());
+        return new DomainUsernamePasswordAuthenticationProvider(tokenService());
     }
 
 

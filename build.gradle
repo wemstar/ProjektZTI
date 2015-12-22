@@ -45,8 +45,7 @@ dependencies {
     compile('net.sf.ehcache:ehcache-core:2.6.9') {
         exclude group: 'commons-logging'
     }
-    runtime('org.apache.derby:derby')
-    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    compile('org.apache.derby:derby')
     testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 
