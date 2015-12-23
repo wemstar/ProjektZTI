@@ -20,13 +20,13 @@ public class DomainUsernamePasswordAuthenticationProvider implements Authenticat
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        Optional<String> username = (Optional) authentication.getPrincipal();
-        Optional<String> password = (Optional) authentication.getCredentials();
+        Optional<String> username = (Optional<String>) authentication.getPrincipal();
+        Optional<String> password = (Optional<String>) authentication.getCredentials();
 
         if (!username.isPresent() || !password.isPresent()) {
             throw new BadCredentialsException("Invalid Domain User Credentials");
         }
-
+        // TODO: Dodać poprawną authentykację
         AuthenticationWithToken resultOfAuthentication = new AuthenticationWithToken("user","user");//externalServiceAuthenticator.authenticate(username.get(), password.get());
         String newToken = tokenService.generateNewToken();
         resultOfAuthentication.setToken(newToken);
