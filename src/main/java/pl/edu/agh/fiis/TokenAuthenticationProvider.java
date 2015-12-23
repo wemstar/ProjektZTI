@@ -1,6 +1,7 @@
 package pl.edu.agh.fiis;
 
 import com.google.common.base.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -13,12 +14,8 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
  */
 public class TokenAuthenticationProvider implements AuthenticationProvider {
 
-
+    @Autowired
     private TokenService tokenService;
-
-    public TokenAuthenticationProvider(TokenService tokenService) {
-        this.tokenService = tokenService;
-    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

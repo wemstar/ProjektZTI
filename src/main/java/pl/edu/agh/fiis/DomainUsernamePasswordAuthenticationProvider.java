@@ -1,11 +1,14 @@
 package pl.edu.agh.fiis;
 
 import com.google.common.base.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -13,13 +16,9 @@ import org.springframework.security.core.AuthenticationException;
  */
 public class DomainUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
+    @Autowired
     private TokenService tokenService;
 
-
-    public DomainUsernamePasswordAuthenticationProvider(TokenService tokenService) {
-        this.tokenService = tokenService;
-
-    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -34,7 +33,7 @@ public class DomainUsernamePasswordAuthenticationProvider implements Authenticat
         String newToken = tokenService.generateNewToken();
         resultOfAuthentication.setToken(newToken);
         tokenService.store(newToken, resultOfAuthentication);
-
+        resultOfAuthentication.setAuthenticated(true);
         return resultOfAuthentication;
     }
 

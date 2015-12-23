@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 /**
  * Created by wemstar on 2015-12-22.
  */
+@Service
 public class TokenService {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenService.class);

@@ -39,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint());
 
         http.addFilterBefore(new AuthenticationFilter(authenticationManager()), BasicAuthenticationFilter.class);
-                //.addFilterBefore(new ManagementEndpointAuthenticationFilter(authenticationManager()), BasicAuthenticationFilter.class);
     }
 
 
@@ -51,20 +50,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public TokenService tokenService() {
-        return new TokenService();
-    }
-
-    @Bean
     public AuthenticationProvider domainUsernamePasswordAuthenticationProvider() {
-        return new DomainUsernamePasswordAuthenticationProvider(tokenService());
+        return new DomainUsernamePasswordAuthenticationProvider();
     }
-
-
 
     @Bean
     public AuthenticationProvider tokenAuthenticationProvider() {
-        return new TokenAuthenticationProvider(tokenService());
+        return new TokenAuthenticationProvider();
     }
 
     @Bean
