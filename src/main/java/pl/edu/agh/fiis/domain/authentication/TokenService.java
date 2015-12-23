@@ -1,4 +1,4 @@
-package pl.edu.agh.fiis;
+package pl.edu.agh.fiis.domain.authentication;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

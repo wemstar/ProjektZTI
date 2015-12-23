@@ -1,4 +1,4 @@
-package pl.edu.agh.fiis;
+package pl.edu.agh.fiis.domain.authentication;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;

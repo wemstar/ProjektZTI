@@ -1,6 +1,5 @@
 package pl.edu.agh.fiis;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -13,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import pl.edu.agh.fiis.domain.authentication.DomainUsernamePasswordAuthenticationProvider;
+import pl.edu.agh.fiis.domain.authentication.TokenAuthenticationProvider;
+import pl.edu.agh.fiis.filter.AuthenticationFilter;
 
 import javax.servlet.http.HttpServletResponse;
 

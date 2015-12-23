@@ -1,4 +1,4 @@
-package pl.edu.agh.fiis;
+package pl.edu.agh.fiis.domain.authentication;
 
 import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

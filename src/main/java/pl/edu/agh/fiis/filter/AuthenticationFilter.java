@@ -1,4 +1,4 @@
-package pl.edu.agh.fiis;
+package pl.edu.agh.fiis.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.util.UrlPathHelper;
+import pl.edu.agh.fiis.dto.TokenResponse;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -70,6 +71,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } catch (AuthenticationException authenticationException) {
             SecurityContextHolder.clearContext();
+            logger.error("authentication service exception", authenticationException.getMessage());
             httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, authenticationException.getMessage());
         } finally {
             MDC.remove(TOKEN_SESSION_KEY);
@@ -132,9 +134,9 @@ public class AuthenticationFilter extends GenericFilterBean {
 
     private Authentication tryToAuthenticate(Authentication requestAuthentication) {
         Authentication responseAuthentication = authenticationManager.authenticate(requestAuthentication);
-        /*if (responseAuthentication == null || !responseAuthentication.isAuthenticated()) {
+        if (responseAuthentication == null || !responseAuthentication.isAuthenticated()) {
             throw new InternalAuthenticationServiceException("Unable to authenticate Domain User for provided credentials");
-        }*/
+        }
         logger.debug("User successfully authenticated");
         return responseAuthentication;
     }
