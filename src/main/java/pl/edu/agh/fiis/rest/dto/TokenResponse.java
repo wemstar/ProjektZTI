@@ -1,4 +1,4 @@
-package pl.edu.agh.fiis.dto;
+package pl.edu.agh.fiis.rest.dto;
 
 /**
  * Created by wemstar on 2015-12-22.

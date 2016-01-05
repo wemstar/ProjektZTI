@@ -34,11 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 csrf().disable().
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().
+                authorizeRequests().antMatchers("/rest/product/all").permitAll()
+                .and().
                 authorizeRequests().
-                anyRequest().authenticated().
-                and().
-                anonymous().disable().
-                exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint());
+                anyRequest().authenticated();
+
 
         http.addFilterBefore(new AuthenticationFilter(authenticationManager()), BasicAuthenticationFilter.class);
     }

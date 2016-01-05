@@ -1,7 +1,7 @@
-package pl.edu.agh.fiis.dao;
+package pl.edu.agh.fiis.bussines.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import pl.edu.agh.fiis.entity.UserEntity;
+import pl.edu.agh.fiis.bussines.entity.UserEntity;
 
 import java.util.List;
 

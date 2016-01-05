@@ -1,7 +1,7 @@
-package pl.edu.agh.fiis.builder.dto;
+package pl.edu.agh.fiis.rest.dto.builder;
 
-import pl.edu.agh.fiis.dto.ProductDTO;
-import pl.edu.agh.fiis.entity.ProductEntity;
+import pl.edu.agh.fiis.bussines.entity.ProductEntity;
+import pl.edu.agh.fiis.rest.dto.ProductDTO;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,7 @@
-package pl.edu.agh.fiis.entity;
+package pl.edu.agh.fiis.bussines.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-02.
@@ -11,7 +12,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "USER_ID")
     private Long id;
 
     @Column(name = "LOGIN",unique = true)
@@ -20,8 +21,13 @@ public class UserEntity {
     @Column(name = "PASSWORD")
     private String password;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="USER_ROLE", joinColumns=@JoinColumn(name="USER_ID"))
     @Column(name = "ROLE")
-    private String role;
+    private Set<String> role;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private BasketEntity basket;
 
     public Long getId() {
         return id;
@@ -47,11 +53,19 @@ public class UserEntity {
         this.password = password;
     }
 
-    public String getRole() {
+    public Set<String> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+    public BasketEntity getBasket() {
+        return basket;
+    }
+
+    public void setBasket(BasketEntity basket) {
+        this.basket = basket;
     }
 }

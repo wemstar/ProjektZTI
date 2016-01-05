@@ -1,14 +1,16 @@
-package pl.edu.agh.fiis.services;
+package pl.edu.agh.fiis.bussines.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pl.edu.agh.fiis.dao.UserDAO;
+import pl.edu.agh.fiis.bussines.dao.UserDAO;
 import pl.edu.agh.fiis.domain.authentication.AuthenticationWithToken;
-import pl.edu.agh.fiis.entity.UserEntity;
+import pl.edu.agh.fiis.domain.authentication.TokenService;
+import pl.edu.agh.fiis.bussines.entity.UserEntity;
 
 import java.util.List;
 
@@ -24,17 +26,26 @@ public class UserServices {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private TokenService tokenService;
+
     public AuthenticationWithToken authenticate(String login,String password) {
         List<UserEntity> userEntities = userDAO.findByLogin(login);
 
         if(userEntities.isEmpty())
             throw new UsernameNotFoundException("User " + login + " not found");
         UserEntity user = userEntities.get(0);
-        String pas = shaPasswordEncoder.encodePassword(password,login);
         if(!shaPasswordEncoder.isPasswordValid(user.getPassword(),password,login))
             throw new BadCredentialsException("User " + login + " bad password");
 
-        return new AuthenticationWithToken(login,password, AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRole()));
+        return new AuthenticationWithToken(login,password, AuthorityUtils.createAuthorityList(user.getRole().toArray(new String[0])));
+    }
+
+    public UserEntity getUserByToken(String token) {
+        Authentication result = tokenService.retrieve(token);
+        String login = String.class.cast(result.getPrincipal());
+
+        return userDAO.findByLogin(login).get(0);
     }
 
 

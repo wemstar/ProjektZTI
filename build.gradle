@@ -46,7 +46,8 @@ dependencies {
         exclude group: 'commons-logging'
     }
     compile('org.apache.derby:derby')
-    testCompile('org.springframework.boot:spring-boot-starter-test') 
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.mockito:mockito-all:1.10.19')
 }
 
 

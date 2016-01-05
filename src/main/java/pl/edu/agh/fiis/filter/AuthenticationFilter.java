@@ -16,7 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.util.UrlPathHelper;
-import pl.edu.agh.fiis.dto.TokenResponse;
+import pl.edu.agh.fiis.rest.dto.TokenResponse;
+import pl.edu.agh.fiis.utils.StringConstants;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -45,20 +46,21 @@ public class AuthenticationFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = asHttp(request);
         HttpServletResponse httpResponse = asHttp(response);
 
-        Optional<String> username = Optional.fromNullable(httpRequest.getHeader("X-Auth-Username"));
-        Optional<String> password = Optional.fromNullable(httpRequest.getHeader("X-Auth-Password"));
-        Optional<String> token = Optional.fromNullable(httpRequest.getHeader("X-Auth-Token"));
+        Optional<String> username = Optional.fromNullable(httpRequest.getHeader(StringConstants.USER_HEADER));
+        Optional<String> password = Optional.fromNullable(httpRequest.getHeader(StringConstants.PASSWORD_HEADER));
+        Optional<String> token = Optional.fromNullable(httpRequest.getHeader(StringConstants.TOKEN_HEADER));
 
         String resourcePath = new UrlPathHelper().getPathWithinApplication(httpRequest);
         try {
             if (postToAuthenticate(httpRequest, resourcePath)) {
-                logger.debug("Trying to authenticate user {} by X-Auth-Username method", username);
+                logger.debug("Trying to authenticate user {} by {} method", username,StringConstants.USER_HEADER);
                 processUsernamePasswordAuthentication(httpResponse, username, password);
                 return;
             }
 
+
             if (token.isPresent()) {
-                logger.debug("Trying to authenticate user by X-Auth-Token method. Token: {}", token);
+                logger.debug("Trying to authenticate user by {} method. Token: {}", StringConstants.TOKEN_HEADER, token);
                 processTokenAuthentication(token);
             }
 
@@ -139,5 +141,9 @@ public class AuthenticationFilter extends GenericFilterBean {
         }
         logger.debug("User successfully authenticated");
         return responseAuthentication;
+    }
+
+    private Boolean ignoredUrl(HttpServletRequest httpRequest, String resourcePath) {
+        return "/rest/product/all".equalsIgnoreCase(resourcePath) && httpRequest.getMethod().equals("GET");
     }
 }

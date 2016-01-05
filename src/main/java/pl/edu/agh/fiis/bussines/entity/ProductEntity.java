@@ -1,8 +1,9 @@
-package pl.edu.agh.fiis.entity;
+package pl.edu.agh.fiis.bussines.entity;
 
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by wemstar on 2015-12-06.
@@ -13,17 +14,20 @@ public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "PRODUCT_ID")
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "PRODUCT_NAME",unique = true)
     private String name;
 
-    @Column(name = "VALUE")
+    @Column(name = "PRODUCT_VALUE")
     private Double value;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "PRODUCT_DESCRIPTION")
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
+    private Set<BasketEntity> baskets;
 
     public Long getId() {
         return id;

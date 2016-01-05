@@ -7,8 +7,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.authority.AuthorityUtils;
-import pl.edu.agh.fiis.services.UserServices;
+import pl.edu.agh.fiis.bussines.services.UserServices;
 
 
 /**
@@ -31,7 +30,6 @@ public class DomainUsernamePasswordAuthenticationProvider implements Authenticat
         if (!username.isPresent() || !password.isPresent()) {
             throw new BadCredentialsException("Invalid Domain User Credentials");
         }
-        // TODO: Dodać poprawną authentykację
         AuthenticationWithToken resultOfAuthentication = userServices.authenticate(username.get(),password.get());
         String newToken = tokenService.generateNewToken();
         resultOfAuthentication.setToken(newToken);
