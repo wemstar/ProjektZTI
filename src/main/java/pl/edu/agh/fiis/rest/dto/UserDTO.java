@@ -6,17 +6,17 @@ import java.util.Set;
  * Created by wemstar on 2016-01-05.
  */
 public class UserDTO {
-    private String name;
+    private String login;
     private BasketDTO basket;
     private String password;
     private Set<String> roles;
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public BasketDTO getBasket() {

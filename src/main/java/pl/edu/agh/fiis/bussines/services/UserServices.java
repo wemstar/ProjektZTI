@@ -38,7 +38,7 @@ public class UserServices {
         if(!shaPasswordEncoder.isPasswordValid(user.getPassword(),password,login))
             throw new BadCredentialsException("User " + login + " bad password");
 
-        return new AuthenticationWithToken(login,password, AuthorityUtils.createAuthorityList(user.getRole().toArray(new String[0])));
+        return new AuthenticationWithToken(login,password, AuthorityUtils.createAuthorityList(user.getRoles().toArray(new String[0])));
     }
 
     public UserEntity getUserByToken(String token) {
@@ -49,4 +49,19 @@ public class UserServices {
     }
 
 
+    public UserEntity createUser(UserEntity userEntity) {
+        return userDAO.save(userEntity);
+    }
+
+    public void updateUser(UserEntity userEntity) {
+        UserEntity stored = userDAO.findByLogin(userEntity.getLogin()).get(0);
+        stored.setLogin(userEntity.getLogin());
+        stored.setBasket(userEntity.getBasket());
+        stored.setRoles(userEntity.getRoles());
+        userDAO.save(stored);
+    }
+
+    public void deleteUserByLogin(String login) {
+        userDAO.delete(userDAO.findByLogin(login));
+    }
 }

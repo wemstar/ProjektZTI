@@ -1,10 +1,11 @@
 package pl.edu.agh.fiis.rest.controller;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import pl.edu.agh.fiis.bussines.entity.builder.UserEntityBuilder;
+import pl.edu.agh.fiis.bussines.services.UserServices;
 import pl.edu.agh.fiis.rest.dto.UserDTO;
+import pl.edu.agh.fiis.rest.dto.builder.UserDTOBuilder;
 
 /**
  * Created by wemstar on 2016-01-05.
@@ -13,20 +14,25 @@ import pl.edu.agh.fiis.rest.dto.UserDTO;
 @RequestMapping(path = "/user")
 public class UserController {
 
+    @Autowired
+    private UserServices userServices;
 
     @RequestMapping(method = RequestMethod.PUT)
     public UserDTO createUser(@RequestBody UserDTO userDTO) {
-
+        userDTO = new UserDTOBuilder(
+                userServices.createUser(
+                        new UserEntityBuilder(userDTO).build()))
+                .build();
         return userDTO;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void updateUser() {
-
+    public void updateUser(@RequestBody UserDTO userDTO) {
+        userServices.updateUser(new UserEntityBuilder(userDTO).build());
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public  void deleteUser() {
-
+    @RequestMapping(path ="/{login}",method = RequestMethod.DELETE)
+    public  void deleteUser(@PathVariable String login) {
+        userServices.deleteUserByLogin(login)
     }
 }

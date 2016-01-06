@@ -24,7 +24,7 @@ public class UserEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="USER_ROLE", joinColumns=@JoinColumn(name="USER_ID"))
     @Column(name = "ROLE")
-    private Set<String> role;
+    private Set<String> roles;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private BasketEntity basket;
@@ -53,12 +53,12 @@ public class UserEntity {
         this.password = password;
     }
 
-    public Set<String> getRole() {
-        return role;
+    public Set<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(Set<String> role) {
-        this.role = role;
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 
     public BasketEntity getBasket() {
