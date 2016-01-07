@@ -15,11 +15,11 @@ public class BasketEntity {
     private Long id;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "PRODUCT_BASKET", joinColumns = {
+    @JoinTable(name = "PRODUCT_COUNT_BASKET", joinColumns = {
             @JoinColumn(name = "BASKET_ID", nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "PRODUCT_ID",
+            inverseJoinColumns = { @JoinColumn(name = "PRODUCT_COUNT_ID",
                     nullable = false, updatable = false) })
-    private Set<ProductEntity> products;
+    private Set<ProductCountEntity> products;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="BASKET_USER_ID", unique= true, nullable=true, insertable=false, updatable=true)
@@ -33,11 +33,11 @@ public class BasketEntity {
         this.id = id;
     }
 
-    public Set<ProductEntity> getProducts() {
+    public Set<ProductCountEntity> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<ProductEntity> products) {
+    public void setProducts(Set<ProductCountEntity> products) {
         this.products = products;
     }
 

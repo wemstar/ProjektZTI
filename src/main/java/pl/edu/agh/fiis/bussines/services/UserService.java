@@ -18,7 +18,7 @@ import java.util.List;
  * Created by wemstar on 2016-01-02.
  */
 @Service
-public class UserServices {
+public class UserService {
 
     @Autowired
     private ShaPasswordEncoder shaPasswordEncoder;

@@ -14,8 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import pl.edu.agh.fiis.rest.dto.TokenResponse;
 import pl.edu.agh.fiis.utils.StringConstants;
 
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.junit.Assert.assertThat;
 

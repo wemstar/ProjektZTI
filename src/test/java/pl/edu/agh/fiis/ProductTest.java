@@ -2,24 +2,16 @@ package pl.edu.agh.fiis;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-import pl.edu.agh.fiis.rest.dto.ProductDTO;
-import pl.edu.agh.fiis.rest.dto.TokenResponse;
-import pl.edu.agh.fiis.utils.StringConstants;
+import org.springframework.test.context.web.WebAppConfiguration;
+import pl.edu.agh.fiis.bussines.dao.ProductDAO;
+import pl.edu.agh.fiis.bussines.entity.ProductEntity;
+import pl.edu.agh.fiis.bussines.entity.builder.ProductEntityBuilder;
+import pl.edu.agh.fiis.bussines.services.ProductService;
 
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -27,20 +19,31 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ProjektZTIApplication.class)
-@WebIntegrationTest
+@WebAppConfiguration
 public class ProductTest {
 
-    RestTemplate restTemplate = new TestRestTemplate();
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private ProductDAO productDAO;
 
     @Test
-    @WithMockUser(username="user",authorities={"ROLE_DOMAIN_USER"})
-    public void productTest() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+    public void productCRUDTest() {
 
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        ProductEntity productEntity = new ProductEntityBuilder().name("Papaja").value(20.0).description("Warzywo").build();
+        productEntity = productService.createProduct(productEntity);
+        assertThat(productEntity.getId(),is(not(nullValue())));
 
-       // List<ProductDTO> products = restTemplate.getForObject("http://localhost:8888/rest/product/all", List.class);
+        productEntity.setDescription("Owoc");
+        productEntity.setValue(30.0);
+
+        productService.updatePoduct(productEntity);
+        ProductEntity stored = productDAO.findOne(productEntity.getId());
+
+        assertThat(stored.getDescription(),is(equalTo("Owoc")));
+        assertThat(stored.getValue(),is(equalTo(30.0)));
+
 
     }
 }

@@ -7,13 +7,13 @@ import java.util.List;
  */
 public class BasketDTO {
 
-    private List<ProductDTO> products;
+    private List<ProductCountDTO> products;
 
-    public List<ProductDTO> getProducts() {
+    public List<ProductCountDTO> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductDTO> products) {
+    public void setProducts(List<ProductCountDTO> products) {
         this.products = products;
     }
 }

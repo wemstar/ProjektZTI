@@ -7,7 +7,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import pl.edu.agh.fiis.bussines.services.UserServices;
+import pl.edu.agh.fiis.bussines.services.UserService;
 
 
 /**
@@ -19,7 +19,7 @@ public class DomainUsernamePasswordAuthenticationProvider implements Authenticat
     private TokenService tokenService;
 
     @Autowired
-    private UserServices userServices;
+    private UserService userService;
 
 
     @Override
@@ -30,7 +30,7 @@ public class DomainUsernamePasswordAuthenticationProvider implements Authenticat
         if (!username.isPresent() || !password.isPresent()) {
             throw new BadCredentialsException("Invalid Domain User Credentials");
         }
-        AuthenticationWithToken resultOfAuthentication = userServices.authenticate(username.get(),password.get());
+        AuthenticationWithToken resultOfAuthentication = userService.authenticate(username.get(),password.get());
         String newToken = tokenService.generateNewToken();
         resultOfAuthentication.setToken(newToken);
         tokenService.store(newToken, resultOfAuthentication);
