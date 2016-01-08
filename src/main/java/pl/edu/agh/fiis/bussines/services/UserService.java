@@ -50,6 +50,7 @@ public class UserService {
 
 
     public UserEntity createUser(UserEntity userEntity) {
+        userEntity.setPassword(shaPasswordEncoder.encodePassword(userEntity.getPassword(),userEntity.getLogin()));
         return userDAO.save(userEntity);
     }
 

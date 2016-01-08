@@ -14,7 +14,6 @@ public class ProductService {
     @Autowired
     private ProductDAO productDAO;
 
-
     public ProductEntity createProduct(ProductEntity productEntity) {
         return productDAO.save(productEntity);
     }
@@ -25,5 +24,9 @@ public class ProductService {
         stored.setDescription(entity.getDescription());
         stored.setValue(entity.getValue());
         productDAO.save(stored);
+    }
+
+    public ProductEntity getProduct(Long id) {
+        return productDAO.findOne(id);
     }
 }

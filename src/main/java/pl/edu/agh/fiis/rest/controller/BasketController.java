@@ -27,8 +27,8 @@ public class BasketController {
     }
 
     @RequestMapping(path = "/{productId}/{amount}")
-    public void addToBasket(@PathVariable Long productId,@PathVariable Integer amount) {
-        //basketService.addToBasket(productId,amount);
+    public void addToBasket(@RequestHeader(StringConstants.TOKEN_HEADER) String token,@PathVariable Long productId,@PathVariable Integer amount) {
+        basketService.addToBasket(token,productId,amount);
     }
 
 

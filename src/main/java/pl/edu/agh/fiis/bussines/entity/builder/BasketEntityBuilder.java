@@ -19,7 +19,10 @@ public class BasketEntityBuilder {
     public BasketEntityBuilder(BasketDTO dto) {
         products = new HashSet<ProductCountEntity>( ProductCountEntityBuilder.convertEntities(dto.getProducts()));
     }
-
+    public BasketEntityBuilder products(Set<ProductCountEntity> products) {
+        this.products = products;
+        return this;
+    }
     public BasketEntity build() {
         BasketEntity entity = new BasketEntity();
         entity.setProducts(products);

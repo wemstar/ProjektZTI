@@ -29,6 +29,11 @@ public class ProductCountEntityBuilder {
         return this;
     }
 
+    public ProductCountEntityBuilder product(ProductEntity product) {
+        this.product = product;
+        return this;
+    }
+
     public ProductCountEntityBuilder count(Integer count) {
         this.count = count;
         return this;
