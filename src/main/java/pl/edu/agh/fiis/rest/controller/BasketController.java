@@ -21,12 +21,12 @@ public class BasketController {
     @Autowired
     private BasketService basketService;
 
-    @RequestMapping(path = "/get",method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public BasketDTO getBasket(@RequestHeader(StringConstants.TOKEN_HEADER) String token) {
         return new BasketDTOBuilder(basketService.getBasket(token)).build();
     }
 
-    @RequestMapping(path = "/{productId}/{amount}")
+    @RequestMapping(path = "/{productId}/{amount}",method = RequestMethod.POST)
     public void addToBasket(@RequestHeader(StringConstants.TOKEN_HEADER) String token,@PathVariable Long productId,@PathVariable Integer amount) {
         basketService.addToBasket(token,productId,amount);
     }
