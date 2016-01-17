@@ -15,6 +15,9 @@ public class UserDTOBuilder {
     private BasketDTO basket;
     private String password;
     private Set<String> roles;
+    private String email;
+    private String city;
+    private String street;
 
     public UserDTOBuilder login(String login) {
         this.login = login;
@@ -36,6 +39,21 @@ public class UserDTOBuilder {
         return this;
     }
 
+    public UserDTOBuilder email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public UserDTOBuilder city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public UserDTOBuilder street(String street) {
+        this.street = street;
+        return this;
+    }
+
     public UserDTOBuilder(){}
 
     public UserDTOBuilder(UserEntity entity){
@@ -43,6 +61,9 @@ public class UserDTOBuilder {
         password = entity.getPassword();
         basket = new BasketDTOBuilder(entity.getBasket()).build();
         roles = entity.getRoles();
+        email = entity.getEmail();
+        city = entity.getCity();
+        street = entity.getCity();
     }
 
     public UserDTO build(){
@@ -51,6 +72,9 @@ public class UserDTOBuilder {
         dto.setPassword(password);
         dto.setBasket(basket);
         dto.setRoles(roles);
+        dto.setEmail(email);
+        dto.setCity(city);
+        dto.setStreet(street);
         return dto;
     }
 }

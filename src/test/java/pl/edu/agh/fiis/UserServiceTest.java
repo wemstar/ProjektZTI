@@ -1,11 +1,19 @@
 package pl.edu.agh.fiis;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 import pl.edu.agh.fiis.bussines.entity.BasketEntity;
 import pl.edu.agh.fiis.bussines.entity.ProductCountEntity;
 import pl.edu.agh.fiis.bussines.entity.ProductEntity;
@@ -17,6 +25,8 @@ import pl.edu.agh.fiis.bussines.entity.builder.UserEntityBuilder;
 import pl.edu.agh.fiis.bussines.services.BasketService;
 import pl.edu.agh.fiis.bussines.services.ProductService;
 import pl.edu.agh.fiis.bussines.services.UserService;
+import pl.edu.agh.fiis.rest.dto.TokenResponse;
+import pl.edu.agh.fiis.rest.dto.UserDTO;
 import pl.edu.agh.fiis.utils.StringConstants;
 
 import java.util.ArrayList;
@@ -25,6 +35,8 @@ import java.util.HashSet;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.not;
 
 /**
  * Created by wemstar on 2016-01-08.
@@ -88,6 +100,5 @@ public class UserServiceTest {
         assertThat(userEntity.getBasket().getProducts().toArray(new ProductCountEntity[]{})[0].getProduct().getName(),is(equalTo("Brąz")));
 
     }
-
 
 }

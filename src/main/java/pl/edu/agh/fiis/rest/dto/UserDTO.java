@@ -10,6 +10,9 @@ public class UserDTO {
     private BasketDTO basket;
     private String password;
     private Set<String> roles;
+    private String email;
+    private String city;
+    private String street;
 
     public String getLogin() {
         return login;
@@ -43,6 +46,30 @@ public class UserDTO {
         this.roles = roles;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -50,6 +77,9 @@ public class UserDTO {
                 ", basket=" + basket +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
+                ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
                 '}';
     }
 }

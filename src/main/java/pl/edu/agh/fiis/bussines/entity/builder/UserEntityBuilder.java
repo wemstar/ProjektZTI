@@ -12,14 +12,13 @@ import java.util.Set;
 public class UserEntityBuilder {
 
     private Long id;
-
     private String login;
-
     private String password;
-
     private Set<String> role;
-
     private BasketEntity basket;
+    private String email;
+    private String city;
+    private String street;
 
     public UserEntityBuilder() {
 
@@ -28,8 +27,10 @@ public class UserEntityBuilder {
         login = dto.getLogin();
         password = dto.getPassword();
         role = dto.getRoles();
-        // TODO
-        //basket = BasketEntityBuilder.
+        email = dto.getEmail();
+        city = dto.getCity();
+        street = dto.getStreet();
+        basket = dto.getBasket() != null ? new BasketEntityBuilder(dto.getBasket()).build() : null;
     }
     public UserEntityBuilder id(Long id) {
         this.id = id;
@@ -56,7 +57,20 @@ public class UserEntityBuilder {
         return this;
     }
 
+    public UserEntityBuilder email(String email) {
+        this.email = email;
+        return this;
+    }
 
+    public UserEntityBuilder city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public UserEntityBuilder street(String street) {
+        this.street = street;
+        return this;
+    }
 
     public UserEntity build() {
         UserEntity userEntity = new UserEntity();
@@ -64,7 +78,10 @@ public class UserEntityBuilder {
         userEntity.setLogin(login);
         userEntity.setPassword(password);
         userEntity.setRoles(role);
-        userEntity.setBasket(basket);
+        //userEntity.setBasket(basket);
+        userEntity.setEmail(email);
+        userEntity.setCity(city);
+        userEntity.setStreet(street);
         return userEntity;
     }
 }

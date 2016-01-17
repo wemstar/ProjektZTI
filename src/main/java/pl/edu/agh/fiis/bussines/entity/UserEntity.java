@@ -29,9 +29,17 @@ public class UserEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
     private BasketEntity basket;
 
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
     @ManyToMany(mappedBy = "user")
     private Set<OrderEntity> orders;
+
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "CITY")
+    private String city;
+
+    @Column(name = "STREET")
+    private String street;
 
     public Long getId() {
         return id;
@@ -79,5 +87,29 @@ public class UserEntity {
 
     public void setOrders(Set<OrderEntity> orders) {
         this.orders = orders;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 }

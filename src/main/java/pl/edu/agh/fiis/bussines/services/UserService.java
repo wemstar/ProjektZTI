@@ -8,10 +8,14 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.edu.agh.fiis.bussines.dao.UserDAO;
+import pl.edu.agh.fiis.bussines.entity.BasketEntity;
 import pl.edu.agh.fiis.domain.authentication.AuthenticationWithToken;
 import pl.edu.agh.fiis.domain.authentication.TokenService;
 import pl.edu.agh.fiis.bussines.entity.UserEntity;
+import pl.edu.agh.fiis.utils.StringConstants;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -51,15 +55,22 @@ public class UserService {
 
     public UserEntity createUser(UserEntity userEntity) {
         userEntity.setPassword(shaPasswordEncoder.encodePassword(userEntity.getPassword(),userEntity.getLogin()));
+        if(userEntity.getBasket() == null) {
+            BasketEntity basketEntity = new BasketEntity();
+            basketEntity.setUser(userEntity);
+            userEntity.setBasket(basketEntity);
+        }
+        userEntity.setRoles(new HashSet<String>(Arrays.asList(new String[]{StringConstants.ROLE_DOMAIN_USER})));
         return userDAO.save(userEntity);
     }
 
     public void updateUser(UserEntity userEntity) {
         UserEntity stored = userDAO.findByLogin(userEntity.getLogin()).get(0);
         stored.setLogin(userEntity.getLogin());
-        stored.setBasket(userEntity.getBasket());
-        stored.setRoles(userEntity.getRoles());
         stored.setOrders(userEntity.getOrders());
+        stored.setEmail(userEntity.getEmail());
+        stored.setCity(userEntity.getCity());
+        stored.setStreet(userEntity.getStreet());
         userDAO.save(stored);
     }
 
