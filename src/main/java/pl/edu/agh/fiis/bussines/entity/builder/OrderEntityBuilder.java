@@ -53,7 +53,9 @@ public class OrderEntityBuilder {
         orderEntity.setProducts(this.products);
         //orderEntity.setId(this.id);
         orderEntity.setState(this.state);
-        orderEntity.setUser(this.user);
+        HashSet<UserEntity> user = new HashSet<>();
+        user.add(this.user);
+        orderEntity.setUser(user);
         return orderEntity;
     }
 }

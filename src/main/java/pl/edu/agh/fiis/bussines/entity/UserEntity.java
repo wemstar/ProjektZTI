@@ -29,7 +29,8 @@ public class UserEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
     private BasketEntity basket;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "user")
     private Set<OrderEntity> orders;
 
     public Long getId() {

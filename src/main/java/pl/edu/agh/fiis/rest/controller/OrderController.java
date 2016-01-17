@@ -1,10 +1,7 @@
 package pl.edu.agh.fiis.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.fiis.annotation.DomainUser;
 import pl.edu.agh.fiis.bussines.services.OrderService;
 import pl.edu.agh.fiis.rest.dto.OrderDTO;
@@ -35,12 +32,12 @@ public class OrderController {
     }
 
     @RequestMapping(path = "/{orderId}",method = RequestMethod.GET)
-    public OrderDTO getOrder(@RequestHeader(StringConstants.TOKEN_HEADER) String token, Long orderId){
+    public OrderDTO getOrder(@RequestHeader(StringConstants.TOKEN_HEADER) String token, @PathVariable Long orderId){
         return new OrderDTOBuilder(orderService.getOrder(token,orderId)).build();
     }
 
     @RequestMapping(path = "/{orderId}",method = RequestMethod.DELETE)
-    public void cancelOrder(@RequestHeader(StringConstants.TOKEN_HEADER) String token, Long orderId){
+    public void cancelOrder(@RequestHeader(StringConstants.TOKEN_HEADER) String token,@PathVariable Long orderId){
         orderService.cancelOrder(token,orderId);
     }
 

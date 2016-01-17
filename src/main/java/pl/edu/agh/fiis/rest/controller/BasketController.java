@@ -31,5 +31,10 @@ public class BasketController {
         basketService.addToBasket(token,productId,amount);
     }
 
+    @RequestMapping(path = "/{productId}",method = RequestMethod.DELETE)
+    public void removeFromBasket(@RequestHeader(StringConstants.TOKEN_HEADER) String token,@PathVariable Long productId){
+        basketService.removeFromBasket(token,productId);
+    }
+
 
 }

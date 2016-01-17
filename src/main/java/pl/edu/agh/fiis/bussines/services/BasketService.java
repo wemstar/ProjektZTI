@@ -34,4 +34,10 @@ public class BasketService {
         basketDAO.save(basket);
 
     }
+
+    public void removeFromBasket(String token, final Long productId) {
+        BasketEntity basket = getBasket(token);
+        basket.getProducts().removeIf(productCountEntity -> productCountEntity.getProduct().getId().equals(productId));
+        basketDAO.save(basket);
+    }
 }

@@ -19,7 +19,7 @@ public class OrderEntity {
     @Column(name = "ORDER_ID")
     private Long id;
 
-   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "ORDER_COUNT_PRODUCT", joinColumns = {
             @JoinColumn(name = "ORDER_ID", nullable = true, updatable = true) },
             inverseJoinColumns = { @JoinColumn(name = "PRODUCT_COUNT_ID",
@@ -29,10 +29,13 @@ public class OrderEntity {
     @Column(name = "ORDER_STATE")
     private OrderEntityState state;
 
-    @MapsId
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="ORDER_USER_ID", nullable=false, insertable=false, updatable=true)
-    private UserEntity user;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ORDER_User", joinColumns = {
+            @JoinColumn(name = "ORDER_ID", nullable = true, updatable = true) },
+            inverseJoinColumns = { @JoinColumn(name = "USER_ID",
+                    nullable = true, updatable = true) })
+    private Set<UserEntity> user;
 
     public Long getId() {
         return id;
@@ -58,11 +61,11 @@ public class OrderEntity {
         this.state = state;
     }
 
-    public UserEntity getUser() {
+    public Set<UserEntity> getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(Set<UserEntity> user) {
         this.user = user;
     }
 }
