@@ -42,4 +42,14 @@ public class UserDTO {
     public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "login='" + login + '\'' +
+                ", basket=" + basket +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

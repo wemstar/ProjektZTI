@@ -14,6 +14,7 @@ public class BasketEntity {
     @Column(name = "BASKET_ID")
     private Long id;
 
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "PRODUCT_COUNT_BASKET", joinColumns = {
             @JoinColumn(name = "BASKET_ID", nullable = false, updatable = false) },
@@ -21,8 +22,9 @@ public class BasketEntity {
                     nullable = false, updatable = false) })
     private Set<ProductCountEntity> products;
 
+    @MapsId
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="BASKET_USER_ID", unique= true, nullable=true, insertable=false, updatable=true)
+    @JoinColumn(name="BASKET_USER_ID", unique= true, nullable=false, insertable=false, updatable=true)
     private UserEntity user;
 
     public Long getId() {

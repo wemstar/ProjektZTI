@@ -26,9 +26,6 @@ public class ProductEntity {
     @Column(name = "PRODUCT_DESCRIPTION")
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
-    private Set<BasketEntity> baskets;
-
     public Long getId() {
         return id;
     }

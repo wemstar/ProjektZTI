@@ -59,6 +59,7 @@ public class UserService {
         stored.setLogin(userEntity.getLogin());
         stored.setBasket(userEntity.getBasket());
         stored.setRoles(userEntity.getRoles());
+        stored.setOrders(userEntity.getOrders());
         userDAO.save(stored);
     }
 

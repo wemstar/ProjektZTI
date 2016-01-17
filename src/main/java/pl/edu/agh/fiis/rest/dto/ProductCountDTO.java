@@ -23,4 +23,12 @@ public class ProductCountDTO {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "ProductCountDTO{" +
+                "product=" + product +
+                ", count=" + count +
+                '}';
+    }
 }

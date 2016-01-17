@@ -16,4 +16,11 @@ public class BasketDTO {
     public void setProducts(List<ProductCountDTO> products) {
         this.products = products;
     }
+
+    @Override
+    public String toString() {
+        return "BasketDTO{" +
+                "products=" + products +
+                '}';
+    }
 }

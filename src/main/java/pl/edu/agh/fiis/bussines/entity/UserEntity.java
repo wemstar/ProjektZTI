@@ -26,8 +26,11 @@ public class UserEntity {
     @Column(name = "ROLE")
     private Set<String> roles;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
     private BasketEntity basket;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<OrderEntity> orders;
 
     public Long getId() {
         return id;
@@ -67,5 +70,13 @@ public class UserEntity {
 
     public void setBasket(BasketEntity basket) {
         this.basket = basket;
+    }
+
+    public Set<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<OrderEntity> orders) {
+        this.orders = orders;
     }
 }

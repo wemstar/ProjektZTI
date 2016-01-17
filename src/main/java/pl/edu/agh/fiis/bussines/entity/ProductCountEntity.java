@@ -1,6 +1,7 @@
 package pl.edu.agh.fiis.bussines.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-07.
@@ -21,9 +22,11 @@ public class ProductCountEntity {
     @Column(name = "PRODUCT_COUNT_COUNT")
     private Integer count;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_ID", nullable = true)
-    private OrderEntity order;
+    @ManyToMany(mappedBy = "products")
+    private Set<OrderEntity> orders;
+
+    @ManyToMany(mappedBy = "products")
+    private Set<BasketEntity> baskets;
 
     public Integer getId() {
         return id;
@@ -47,5 +50,21 @@ public class ProductCountEntity {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public Set<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<OrderEntity> orders) {
+        this.orders = orders;
+    }
+
+    public Set<BasketEntity> getBaskets() {
+        return baskets;
+    }
+
+    public void setBaskets(Set<BasketEntity> baskets) {
+        this.baskets = baskets;
     }
 }

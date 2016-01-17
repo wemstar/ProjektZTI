@@ -26,7 +26,6 @@ import static org.junit.Assert.assertThat;
 @WebIntegrationTest
 public class AuthenticationTest {
 
-    RestTemplate restTemplate = new TestRestTemplate();
 
     @Test
     public void contextLoads() {

@@ -23,7 +23,7 @@ public class ProductController {
     @Autowired
     ProductDAO productDAO;
 
-    @RequestMapping(path = "/all",method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<ProductDTO> getAll() {
         return ProductDTOBuilder.convertEntities(productDAO.findAll());
     }
@@ -33,7 +33,7 @@ public class ProductController {
         return ProductDTOBuilder.convertEntities(productDAO.findByName(name));
     }
 
-    @RequestMapping(path = "id/{id}")
+    @RequestMapping(path = "/{id}",method = RequestMethod.GET)
     public ProductDTO getProductById(@PathVariable Long id) {
         return new ProductDTOBuilder(productDAO.findOne(id)).build();
     }

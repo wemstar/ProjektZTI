@@ -45,7 +45,7 @@ public class UserServiceTest {
     @Test
     public void crudUserTest() {
         ProductEntity productEntity1 = productService.createProduct(new ProductEntityBuilder()
-                .name("Węgiel")
+                .name("Węgiela")
                 .description("Coś czarnego")
                 .value(20.0)
                 .build());
@@ -54,21 +54,25 @@ public class UserServiceTest {
                 .description("Coś czarnego")
                 .value(20.0)
                 .build());
-        UserEntity userEntity = userService.createUser(new UserEntityBuilder()
-                .login("sylwek")
+        BasketEntity basket = new BasketEntityBuilder()
+                .products(new HashSet<>(Arrays.asList(new ProductCountEntity[]{
+                        new ProductCountEntityBuilder()
+                                .count(2)
+                                .product(productEntity1)
+                                .build()
+                })))
+                .build();
+        UserEntity userEntity = new UserEntityBuilder()
+                .id(5L)
+                .login("sylweik")
                 .password("macura")
                 .role(new HashSet<>(Arrays.asList(new String[]{StringConstants.ROLE_DOMAIN_USER})))
-                .basket(new BasketEntityBuilder()
-                        .products(new HashSet<>(Arrays.asList(new ProductCountEntity[]{
-                                new ProductCountEntityBuilder()
-                                        .count(2)
-                                        .product(productEntity1)
-                                        .build()
-                        })))
-                        .build())
-                .build());
+                .basket(basket)
+                .build();
+        basket.setUser(userEntity);
+        userEntity = userService.createUser(userEntity);
         assertThat(userEntity.getId(),is(not(nullValue())));
-        assertThat(userEntity.getLogin(),is(equalTo("sylwek")));
+        assertThat(userEntity.getLogin(),is(equalTo("sylweik")));
         assertThat(userEntity.getPassword(),is(not(equalTo("macura"))));
 
 

@@ -31,6 +31,10 @@ public class UserEntityBuilder {
         // TODO
         //basket = BasketEntityBuilder.
     }
+    public UserEntityBuilder id(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public UserEntityBuilder login(String login) {
         this.login = login;
@@ -56,6 +60,7 @@ public class UserEntityBuilder {
 
     public UserEntity build() {
         UserEntity userEntity = new UserEntity();
+        userEntity.setId(id);
         userEntity.setLogin(login);
         userEntity.setPassword(password);
         userEntity.setRoles(role);
