@@ -13,6 +13,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-@PreAuthorize("hasAuthority('"+ StringConstants.ROLE_DOMAIN_USER+"')")
+@PreAuthorize("hasAnyAuthority('"+ StringConstants.ROLE_DOMAIN_USER+"','"+StringConstants.ROLE_ADMIN_USER+"')")
 public @interface DomainUser {
 }

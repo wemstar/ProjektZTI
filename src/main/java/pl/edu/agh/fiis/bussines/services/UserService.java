@@ -14,6 +14,7 @@ import pl.edu.agh.fiis.domain.authentication.TokenService;
 import pl.edu.agh.fiis.bussines.entity.UserEntity;
 import pl.edu.agh.fiis.utils.StringConstants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -76,5 +77,13 @@ public class UserService {
 
     public void deleteUserByLogin(String login) {
         userDAO.delete(userDAO.findByLogin(login));
+    }
+
+    public Iterable<UserEntity> getAllUsers() {
+        return userDAO.findAll();
+    }
+
+    public UserEntity getUserById(Long id) {
+        return userDAO.findOne(id);
     }
 }

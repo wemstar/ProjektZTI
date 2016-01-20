@@ -1,4 +1,4 @@
-package pl.edu.agh.fiis.rest.controller;
+package pl.edu.agh.fiis.rest.controller.user;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

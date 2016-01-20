@@ -45,4 +45,19 @@ public class OrderService {
     public void cancelOrder(String token, Long orderId) {
         orderDAO.delete(orderId);
     }
+
+    public Iterable<OrderEntity> getAllOrder() {
+        return orderDAO.findAll();
+    }
+
+    public OrderEntity getOrders(Long id) {
+        return orderDAO.findOne(id);
+    }
+
+    public void updateOrder(OrderEntity order) {
+        OrderEntity stored = orderDAO.findOne(order.getId());
+        stored.setProducts(order.getProducts());
+        stored.setState(order.getState());
+        orderDAO.save(stored);
+    }
 }

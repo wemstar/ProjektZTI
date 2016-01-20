@@ -4,6 +4,8 @@ import pl.edu.agh.fiis.bussines.entity.UserEntity;
 import pl.edu.agh.fiis.rest.dto.BasketDTO;
 import pl.edu.agh.fiis.rest.dto.UserDTO;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -76,5 +78,13 @@ public class UserDTOBuilder {
         dto.setCity(city);
         dto.setStreet(street);
         return dto;
+    }
+
+    public static List<UserDTO> converEntities(Iterable<UserEntity> userEntities) {
+        List<UserDTO> dtos = new ArrayList<UserDTO>();
+        for (UserEntity entity : userEntities) {
+            dtos.add(new UserDTOBuilder(entity).build());
+        }
+        return dtos;
     }
 }
