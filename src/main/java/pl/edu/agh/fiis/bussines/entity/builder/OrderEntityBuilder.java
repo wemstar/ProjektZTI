@@ -1,6 +1,5 @@
 package pl.edu.agh.fiis.bussines.entity.builder;
 
-import pl.edu.agh.fiis.bussines.entity.BasketEntity;
 import pl.edu.agh.fiis.bussines.entity.OrderEntity;
 import pl.edu.agh.fiis.bussines.entity.ProductCountEntity;
 import pl.edu.agh.fiis.bussines.entity.UserEntity;
@@ -12,6 +11,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-16.
+ * Builder dla {@link pl.edu.agh.fiis.bussines.entity.OrderEntity}
  */
 public class OrderEntityBuilder {
 

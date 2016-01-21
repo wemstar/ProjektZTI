@@ -2,6 +2,7 @@ package pl.edu.agh.fiis.rest.dto;
 
 /**
  * Created by wemstar on 2016-01-07.
+ * Klasa trasportująca ilość produktów
  */
 public class ProductCountDTO {
 

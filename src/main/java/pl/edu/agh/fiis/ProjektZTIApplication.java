@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.web.servlet.DispatcherServlet;
 
+/**
+ * Główna klasa konfiguracyjna
+ */
 @SpringBootApplication
 public class ProjektZTIApplication {
 

@@ -9,6 +9,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-07.
+ * Klasa encyjna dla zlecenia
  */
 @Entity
 @Table(name = "ORDER_TAB")

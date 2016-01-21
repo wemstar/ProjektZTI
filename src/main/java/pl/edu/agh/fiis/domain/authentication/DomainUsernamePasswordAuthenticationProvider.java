@@ -12,6 +12,7 @@ import pl.edu.agh.fiis.bussines.services.UserService;
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Weryfikuje użytkowników po loginie i haśle
  */
 public class DomainUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 

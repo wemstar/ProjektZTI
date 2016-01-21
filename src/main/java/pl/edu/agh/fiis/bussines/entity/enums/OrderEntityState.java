@@ -2,6 +2,7 @@ package pl.edu.agh.fiis.bussines.entity.enums;
 
 /**
  * Created by wemstar on 2016-01-07.
+ * Enum reprezentujący stany zlecenia
  */
 public enum OrderEntityState {
     NEW("NEW"),

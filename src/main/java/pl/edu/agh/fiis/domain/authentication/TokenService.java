@@ -14,6 +14,7 @@ import java.util.UUID;
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Serwis do przetwarzania tokenów
  */
 @Service
 public class TokenService {

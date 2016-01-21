@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by wemstar on 2016-01-04.
+ * Klasa budująca dla {@link pl.edu.agh.fiis.rest.dto.BasketDTO}
  */
 public class BasketDTOBuilder {
 

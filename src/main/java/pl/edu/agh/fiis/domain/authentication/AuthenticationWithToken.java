@@ -7,6 +7,7 @@ import java.util.Collection;
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Klasa Spring Security dla tokena
  */
 public class AuthenticationWithToken extends PreAuthenticatedAuthenticationToken {
     public AuthenticationWithToken(Object aPrincipal, Object aCredentials) {

@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-07.
+ * Klasa encyjna dla ilości produktów
  */
 @Entity
 @Table(name = "PRODUCT_COUNT")

@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by wemstar on 2015-12-06.
+ * Klasa przetarzająca zapytania dla produktów
  */
 @RestController
 @RequestMapping(path = "/product")

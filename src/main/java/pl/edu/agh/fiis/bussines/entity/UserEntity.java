@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-02.
+ * Klasa encyjna dla użytkowników
  */
 @Entity
 @Table(name = "ZTI_USER")

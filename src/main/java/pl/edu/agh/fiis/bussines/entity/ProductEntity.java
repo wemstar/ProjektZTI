@@ -7,6 +7,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2015-12-06.
+ * Klasa encyjna dla produktów
  */
 @Entity
 @Table(name = "PRODUCT")

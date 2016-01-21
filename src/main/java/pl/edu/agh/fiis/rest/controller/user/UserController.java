@@ -12,6 +12,7 @@ import pl.edu.agh.fiis.utils.StringConstants;
 
 /**
  * Created by wemstar on 2016-01-05.
+ * Klasa przetwarzająca zapytanie dla użytkowników
  */
 @RestController
 @RequestMapping(path = "/user")

@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Klasa odpowiada za konfigurację Spring Security
  */
 @Configuration
 @EnableWebSecurity

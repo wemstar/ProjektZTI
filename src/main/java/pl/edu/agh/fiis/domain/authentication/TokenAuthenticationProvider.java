@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Weryfikacja użytkoników po tokenie
  */
 public class TokenAuthenticationProvider implements AuthenticationProvider {
 

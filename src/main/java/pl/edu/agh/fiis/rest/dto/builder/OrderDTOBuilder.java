@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by wemstar on 2016-01-16.
+ * Klasa budująca dla {@link pl.edu.agh.fiis.rest.dto.OrderDTO}
  */
 public class OrderDTOBuilder {
 

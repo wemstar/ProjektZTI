@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by wemstar on 2016-01-04.
+ * Klasa trasportująca koszyk
  */
 public class BasketDTO {
 

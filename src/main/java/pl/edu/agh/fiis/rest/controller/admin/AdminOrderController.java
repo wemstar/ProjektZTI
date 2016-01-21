@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by wemstar on 2016-01-18.
+ * Klasa przetwarzająca zapytania administracyjne dla zleceń
  */
 @AdminUser
 @RestController

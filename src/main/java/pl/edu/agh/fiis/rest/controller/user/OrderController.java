@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by wemstar on 2016-01-05.
+ * Przetwarzanie zapytań dla zleceń
  */
 @RestController
 @RequestMapping(path = "/order")

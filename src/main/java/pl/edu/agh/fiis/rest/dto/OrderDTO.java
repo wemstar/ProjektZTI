@@ -7,6 +7,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-16.
+ * Klasa transportująca zlecenie
  */
 public class OrderDTO {
 

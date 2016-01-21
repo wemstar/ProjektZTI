@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Created by wemstar on 2015-12-06.
+ * Klasa budująca dla {@link pl.edu.agh.fiis.rest.dto.ProductDTO}
  */
 public class ProductDTOBuilder {
 

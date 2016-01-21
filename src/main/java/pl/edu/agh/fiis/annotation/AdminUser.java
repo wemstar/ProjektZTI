@@ -7,6 +7,7 @@ import java.lang.annotation.*;
 
 /**
  * Created by wemstar on 2016-01-05.
+ * Adnotacja zezwalający tylko administratorowi wywoływanie metod
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

@@ -2,6 +2,7 @@ package pl.edu.agh.fiis.rest.dto;
 
 /**
  * Created by wemstar on 2015-12-06.
+ * Klasa trasportująca produkt
  */
 public class ProductDTO {
     private Long id;

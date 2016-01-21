@@ -4,6 +4,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-05.
+ * Klasa transportująca użytkownika
  */
 public class UserDTO {
     private String login;

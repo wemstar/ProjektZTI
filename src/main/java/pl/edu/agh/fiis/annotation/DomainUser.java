@@ -8,6 +8,7 @@ import java.lang.annotation.*;
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Adnotacja zezwalający tylko zalogowanym użytkownikom wywoływanie metod
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

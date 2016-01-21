@@ -11,6 +11,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-07.
+ * Klasa budująca dla {@link pl.edu.agh.fiis.rest.dto.ProductCountDTO}
  */
 public class ProductCountDTOBuilder {
 

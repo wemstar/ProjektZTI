@@ -10,6 +10,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-06.
+ * Klasa budująca dla {@link pl.edu.agh.fiis.rest.dto.UserDTO}
  */
 public class UserDTOBuilder {
 

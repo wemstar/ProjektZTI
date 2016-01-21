@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by wemstar on 2015-12-23.
+ * Klasa dla celów dokumentacji, reqest przechwytywany w {@link pl.edu.agh.fiis.filter.AuthenticationFilter}
  */
 @RestController
 @RequestMapping(path = "/authenticate")

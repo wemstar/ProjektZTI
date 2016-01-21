@@ -10,6 +10,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-06.
+ * Builder dla {@link pl.edu.agh.fiis.bussines.entity.BasketEntity}
  */
 public class BasketEntityBuilder {
 

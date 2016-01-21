@@ -29,6 +29,7 @@ import java.io.IOException;
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Klasa filtrująca zapytania.
  */
 public class AuthenticationFilter extends GenericFilterBean {
 

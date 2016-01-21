@@ -11,6 +11,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-07.
+ * Builder dla {@link pl.edu.agh.fiis.bussines.entity.ProductCountEntity}
  */
 public class ProductCountEntityBuilder {
 

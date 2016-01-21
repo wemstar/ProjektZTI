@@ -2,6 +2,7 @@ package pl.edu.agh.fiis.rest.dto;
 
 /**
  * Created by wemstar on 2015-12-22.
+ * Klasa transportująca token
  */
 public class TokenResponse {
 

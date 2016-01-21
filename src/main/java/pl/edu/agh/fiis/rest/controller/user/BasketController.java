@@ -12,6 +12,7 @@ import pl.edu.agh.fiis.utils.StringConstants;
 
 /**
  * Created by wemstar on 2016-01-04.
+ * Przetwarzanie zapytań dla koszyka
  */
 @RestController
 @RequestMapping(path = "/basket")

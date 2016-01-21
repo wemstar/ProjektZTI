@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * Created by wemstar on 2016-01-04.
+ * Klasa encyjna dla koszyka
  */
 @Entity
 @Table(name = "BASKET")

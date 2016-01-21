@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by wemstar on 2016-01-17.
+ * Aspekt odpowiadający za tworzenie logów z wywołań usług restowych
  */
 @Aspect
 @Component
